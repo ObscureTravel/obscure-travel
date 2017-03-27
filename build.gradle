@@ -41,6 +41,7 @@ task buildSrcFolders {
 
 	doLast {
 		mkdir("src/main/java/")
+		mkdir("src/main/java/obscureTravel")
 		mkdir("src/main/resources")
 		mkdir("src/main/resources/static")
 		mkdir("src/main/resources/static/css")
