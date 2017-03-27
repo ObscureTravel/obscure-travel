@@ -39,10 +39,10 @@ task buildSrcFolders {
 		mkdir("src/main/java/")
 		mkdir("src/main/java/obscureTravel")
 		mkdir("src/main/resources")
-		mkdir("src/main/resources/static")
 		mkdir("src/main/resources/css")
 		mkdir("src/main/resources/images")
 		mkdir("src/main/resources/js")
+		mkdir("src/main/resources/static")
 		mkdir("src/main/resources/templates")
 	}
 }
