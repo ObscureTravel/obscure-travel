@@ -1,7 +1,5 @@
 package obscureTravel;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,13 +14,8 @@ public class LocationController {
 	LocationRepository locationRepository;
 
 	@RequestMapping("/showLocations")
-	public List<Location> showLocations() {
+	public Iterable<Location> showLocations() {
 		return locationRepository.findAll();
-	}
-
-	@RequestMapping("/{name}")
-	public List<Location> showLocationByName(@PathVariable final String name) {
-		return locationRepository.findByName(name);
 	}
 
 	@RequestMapping("/{id}")

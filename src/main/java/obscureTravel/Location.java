@@ -15,17 +15,17 @@ public class Location {
 	String name;
 	String latitude;
 	String longitude;
-	String type;
+	String locationType;
 	String description;
 
 	protected Location() {
 	}
 
-	public Location(String name, String latitude, String longitude, String type, String description) {
+	public Location(String name, String latitude, String longitude, String locationType, String description) {
 		this.name = name;
 		this.latitude = latitude;
 		this.longitude = longitude;
-		this.type = type;
+		this.locationType = locationType;
 		this.description = description;
 	}
 
@@ -46,7 +46,7 @@ public class Location {
 	}
 
 	public String getType() {
-		return type;
+		return locationType;
 	}
 
 	public String getDescription() {
