@@ -1,4 +1,0 @@
-insert into Location(name, latitude, longitude, location_Type, description) values ('Bossy Grrl''s PinUp Joint', '40.0153', '-83.0114', 'Bar', 'description')
-insert into Location(name, latitude, longitude, location_Type, description) values ('Ray Ray''s Hog Pit', '40.0157', '-83.0120', 'Food Truck', 'description')
-insert into Location(name, latitude, longitude, location_Type, description) values ('Blue Danube', '40.0120', '-83.0109', 'Restaurant', 'description')
-insert into Location(name, latitude, longitude, location_Type, description) values ('Amarnanth Abbey-Union Cemetery', '40.0171', '-83.0210', 'Cemetary', 'description')
