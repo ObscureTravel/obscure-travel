@@ -11,11 +11,36 @@
     <!-- div for map display -->
     <div id="map">
     </div>
-
+<script src=" https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
     <script src="js/userLocation.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCccCLwK8Z1Z1sI8y3HnsOyy46P1rxPqNk&callback=initMap">
     </script>
+<script>
+$(document).ready(function(){
+  $.get("locations/showLocations", function(data){
+   window.eqfeed_callback = function(theLocations) {
+        for (var i = 0; i < theLocations.features.length; i++) {
+          var coords = theLocations.features[i].geometry.coordinates;
+          var latLng = new google.maps.LatLng(coords[1],coords[0]);
+          var marker = new google.maps.Marker({
+          position: latLng,
+            map: map,
+            title: theLocation.name,
+            // html: 
+            //     '<div class="markerPop">' 
+            //     '<h1>'  theLocation.name'</h1>'  //substring removes distance from title
+            //     '<h3>'  theLocations.address '</h3>' 
+            //     '<p>'  theLocations.locationType  '</p>' 
+            //     '<p>'  theLocations.locationType  '</p>' 
+            //     '</div>'
+          });
+  
+  console.log(data)
+}
+});
+  });
 
+</script>
 </body>
 
 </html>
