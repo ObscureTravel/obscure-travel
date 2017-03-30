@@ -5,7 +5,7 @@ function initMap() {
             lng: -83.0028315
         },
         zoom: 20,
-        minZoom: 18,
+        minZoom: 15,
         // mapTypeId: google.maps.MapTypeId.HYBRID,
     });
     var infoWindow = new google.maps.InfoWindow({

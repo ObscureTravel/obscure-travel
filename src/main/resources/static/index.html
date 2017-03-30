@@ -17,29 +17,34 @@
     </script>
 <script>
 $(document).ready(function(){
-  $.get("locations/showLocations", function(data){
-   window.eqfeed_callback = function(theLocations) {
-        for (var i = 0; i < theLocations.features.length; i++) {
-          var coords = theLocations.features[i].geometry.coordinates;
-          var latLng = new google.maps.LatLng(coords[1],coords[0]);
-          var marker = new google.maps.Marker({
-          position: latLng,
-            map: map,
-            title: theLocation.name,
-            // html: 
-            //     '<div class="markerPop">' 
-            //     '<h1>'  theLocation.name'</h1>'  //substring removes distance from title
-            //     '<h3>'  theLocations.address '</h3>' 
-            //     '<p>'  theLocations.locationType  '</p>' 
-            //     '<p>'  theLocations.locationType  '</p>' 
-            //     '</div>'
-          });
-  
-  console.log(data)
-}
-});
-  });
+  $.get("locations/showLocations", function(results){
+ // window.eqfeed_callback = function(results) {
 
+       for (var i = 0; i < results.length; i++) {
+         var coords1 = results[i].latitude;
+            var coords2 = results[i].longitude;
+//          var latLng = new google.maps.LatLng(coords1,coords2);
+//          var marker = new google.maps.Marker({
+//          position: latLng,
+//            map: map,
+//            title: i.name,
+//              
+//            // html: 
+//            //     '<div class="markerPop">' 
+//            //     '<h1>'  theLocation.name'</h1>'  //substring removes distance from title
+//            //     '<h3>'  theLocations.address '</h3>' 
+//            //     '<p>'  theLocations.locationType  '</p>' 
+//            //     '<p>'  theLocations.locationType  '</p>' 
+//            //     '</div>'
+//          });
+  
+   console.log(coords1);
+//}
+        console.log(results+ "yes");
+}
+   console.log(results.length);
+  });
+ });
 </script>
 </body>
 
