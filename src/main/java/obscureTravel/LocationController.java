@@ -1,7 +1,5 @@
 package obscureTravel;
 
-import java.sql.SQLException;
-
 import javax.annotation.Resource;
 
 import org.springframework.http.HttpStatus;
