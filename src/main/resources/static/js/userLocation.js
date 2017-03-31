@@ -5,8 +5,8 @@ function initMap() {
             lat: 39.9622212,
             lng: -83.0028315
         },
-        zoom: 20,
-        minZoom: 8,
+        zoom: 13,
+        //minZoom: 8,
         // mapTypeId: google.maps.MapTypeId.HYBRID,
     });
     var infoWindow = new google.maps.InfoWindow({
