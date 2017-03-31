@@ -5,9 +5,9 @@
       var messagewindow;
 
       function initMap() {
-        var california = {lat: 37.4419, lng: -122.1419};
+        var columbus = {lat: 39.9622212, lng: -83.0028315};
         map = new google.maps.Map(document.getElementById('map'), {
-          center: california,
+          center: columbus,
           zoom: 13
         });
 
@@ -42,10 +42,16 @@
       
 $(document).ready(function () {    
       
-      $('save-button').click(function (event) {
+      $('#save-button').click(function (event) {
     	// we don’t want the button to actually submit  --- we'll handle data submission via ajax
   	  event.preventDefault();
+  	  
+  	
+  	  
+  	
   	  var latlng = marker.getPosition();
+  	  var type = $('#type :selected').val();
+  	  
   	  
   	  $.ajax({			// Make an Ajax call to the server. HTTP verb = POST, URL = locations
   		  type: 'POST',
@@ -63,6 +69,8 @@ $(document).ready(function () {
   		  },
   		'dataType': 'json'	  
   	  }).success(function(data, status) { // If the call succeeds, clear the form and reload the summary table
+  		  
+  		  alert(data);
   		  	
 	  		infowindow.close();
             messagewindow.open(map, marker);

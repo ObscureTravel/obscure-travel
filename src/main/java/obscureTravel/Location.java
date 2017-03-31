@@ -45,7 +45,7 @@ public class Location {
 		return longitude;
 	}
 
-	public String getType() {
+	public String getlocationType() {
 		return locationType;
 	}
 
