@@ -19,11 +19,13 @@ public class LocationController {
 
 	@RequestMapping("/showLocations")
 	public Iterable<Location> showLocations() {
+		
 		return locationRepository.findAll();
 	}
 
 	@RequestMapping("/{id}")
 	public Location showLocation(@PathVariable Long id) {
+		
 		return locationRepository.findOne(id);
 	}
 	
