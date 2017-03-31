@@ -1,5 +1,7 @@
 package obscureTravel;
 
+import java.sql.SQLException;
+
 import javax.annotation.Resource;
 
 import org.springframework.http.HttpStatus;
@@ -19,11 +21,13 @@ public class LocationController {
 
 	@RequestMapping("/showLocations")
 	public Iterable<Location> showLocations() {
+		
 		return locationRepository.findAll();
 	}
 
 	@RequestMapping("/{id}")
 	public Location showLocation(@PathVariable Long id) {
+		
 		return locationRepository.findOne(id);
 	}
 	
