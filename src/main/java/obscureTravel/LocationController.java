@@ -34,4 +34,10 @@ public class LocationController {
 		
 		return new ResponseEntity<>(locationRepository.save(location), HttpStatus.CREATED );
 	}
+	
+	
+	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
+	public void updateLocation(long id, @RequestBody Location location) {
+		locationRepository.save(location);
+	}
 }
