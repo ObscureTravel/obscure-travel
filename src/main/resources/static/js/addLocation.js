@@ -50,69 +50,70 @@
 
               map.setCenter(usersPosition);
 
-              marker = new google.maps.Marker
+              marker = new google.maps.Marker({
 
-              position: usersPosition,
-                  map: map
-          });
+                  position: usersPosition,
+                  map: map,
+                  icon: 'images/greyLocationMarker.png'
+              });
 
-          //The code below assigns a click listener to the marker which displays an info window when the user clicks the marker.
-          google.maps.event.addListener(marker, 'click', function() {
-              infowindow.open(map, marker);
+              //The code below assigns a click listener to the marker which displays an info window when the user clicks the marker.
+              google.maps.event.addListener(marker, 'click', function() {
+                  infowindow.open(map, marker);
+              });
           });
       });
-  });
 
 
-  $(document).ready(function() {
+      $(document).ready(function() {
 
-      $('#save-button').click(function(event) {
-          // we don’t want the button to actually submit  --- we'll handle data submission via ajax
-          event.preventDefault();
-
-
+          $('#save-button').click(function(event) {
+              // we don’t want the button to actually submit  --- we'll handle data submission via ajax
+              event.preventDefault();
 
 
-          var latlng = marker.getPosition();
-          var type = $('#type :selected').val();
 
 
-          $.ajax({ // Make an Ajax call to the server. HTTP verb = POST, URL = locations
-              type: 'POST',
-              url: '/locations',
-              data: JSON.stringify({
-                  name: $('#name').val(),
-                  latitude: latlng.lat(),
-                  longitude: latlng.lng(),
-                  locationType: $('#type').val(),
-                  description: $('#description').val()
-              }),
-              headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json'
-              },
-              'dataType': 'json'
-          }).success(function(data, status) { // If the call succeeds, clear the form and reload the summary table
-
-              alert("your recommendation has been added");
+              var latlng = marker.getPosition();
+              var type = $('#type :selected').val();
 
 
-              //clear form fields before infowindow is closed
-              $('#name').val('');
-              $('#description').val('');
+              $.ajax({ // Make an Ajax call to the server. HTTP verb = POST, URL = locations
+                  type: 'POST',
+                  url: '/locations',
+                  data: JSON.stringify({
+                      name: $('#name').val(),
+                      latitude: latlng.lat(),
+                      longitude: latlng.lng(),
+                      locationType: $('#type').val(),
+                      description: $('#description').val()
+                  }),
+                  headers: {
+                      'Accept': 'application/json',
+                      'Content-Type': 'application/json'
+                  },
+                  'dataType': 'json'
+              }).success(function(data, status) { // If the call succeeds, clear the form and reload the summary table
 
-              //close info window
-              infowindow.close();
-              // messagewindow.open(map, marker);
+                  alert("your recommendation has been added");
 
-              //this should clear the fields
-              // $('#name').val('');
-              // $('#description').val('');
+
+                  //clear form fields before infowindow is closed
+                  $('#name').val('');
+                  $('#description').val('');
+
+                  //close info window
+                  infowindow.close();
+                  // messagewindow.open(map, marker);
+
+                  //this should clear the fields
+                  // $('#name').val('');
+                  // $('#description').val('');
+
+              });
 
           });
-
       });
-  });
   };
 
 
