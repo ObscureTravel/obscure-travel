@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -37,6 +38,7 @@ public class LocationController {
 	
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
+	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void updateLocation(long id, @RequestBody Location location) {
 		locationRepository.save(location);
 	}

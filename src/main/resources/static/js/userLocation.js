@@ -1,4 +1,6 @@
 
+var testId;
+
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         center: {
@@ -22,6 +24,7 @@ $.get("locations/showLocations", function(userLocations){
  for (var i = 0; i < userLocations.length; i++) {
   var coords1 = userLocations[i].latitude;
   var coords2 = userLocations[i].longitude;
+ // var testId = userLocations[i].id;
   var latLng = new google.maps.LatLng(coords1,coords2);
   var marker = new google.maps.Marker({
     position: latLng,
@@ -30,9 +33,10 @@ $.get("locations/showLocations", function(userLocations){
     html:
     '<div style=" height: 100%;">'+
     '<h1>' + userLocations[i].name+'</h1>' + 
-    '<h3>' + userLocations[i].locationType + '</h3>'+
+    '<p>' + userLocations[i].locationType + '</p>'+
     '<p>'+  userLocations[i].description + '</p>'+
-    '<button id="edit-button-modal" class="test" type="button" data-toggle="modal" data-target="#edit-modal">' + 'Update' + '</button>' +
+    '<input id="testTest" type="hidden" value="' + userLocations[i].id + '" />' + 
+    '<button id="edit-button-modal" type="button" data-toggle="modal" data-target="#edit-modal">' + 'Edit' + '</button>' +
     '</div>'
 
     
@@ -81,21 +85,24 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 //this will display the location details
  
-	$(".test").click(function(event) {
-		event.preventDefault();
-		alert("yeah im working");
-		  
-		$.ajax({
-	        url: "http://localhost:8080/locations/2"
-	    }).then(function(data) {
-	    	$('#edit-name').append(data.name);
-	    	$('#edit-description').append(data.description);
-	    	$('#edit-type').append(data.locationType);
-	    	
-	    });
-		
-		
-		
-		});
-
+$('#edit-modal').on('show.bs.modal', function (event) {
+	
+	 var element = $(event.relatedTarget);
+	 var locationId = $('#testTest').val();
+	 
+	 console.log($('#testTest'));
+	 
+	 var modal = $(this);
+	 
+	 $.ajax({
+	 type: 'GET',
+	 url: '/locations/' + locationId, success: function (location) {
+			 modal.find('#edit-name').val(location.name);
+			 modal.find('#edit-description').val(location.description);
+			 modal.find('#edit-type').val(location.locationType);
+			 
+			}
+	 });
+	 
+});
   
