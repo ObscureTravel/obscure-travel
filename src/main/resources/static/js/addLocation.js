@@ -51,16 +51,16 @@
               map.setCenter(usersPosition);
 
               marker = new google.maps.Marker({
-
                   position: usersPosition,
                   map: map,
                   icon: 'images/greyLocationMarker.png'
               });
 
+              infowindow.open(map, marker);
               //The code below assigns a click listener to the marker which displays an info window when the user clicks the marker.
-              google.maps.event.addListener(marker, 'click', function() {
-                  infowindow.open(map, marker);
-              });
+              // google.maps.event.addListener(marker, 'click', function() {
+              //     infowindow.open(map, marker);
+              // });
           });
       });
 
