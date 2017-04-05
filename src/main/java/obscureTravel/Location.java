@@ -52,5 +52,5 @@ public class Location {
 	public String getDescription() {
 		return description;
 	}
-
+	
 }
