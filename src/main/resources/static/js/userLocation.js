@@ -28,11 +28,14 @@ $.get("locations/showLocations", function(userLocations){
     map: map,
     title: userLocations[i].name,
     html:
-    '<div style=" height: 100px;">'+
+    '<div style=" height: 100%;">'+
     '<h1>' + userLocations[i].name+'</h1>' + 
-    '<h3>' + userLocations[i].type + '</h3>'+
+    '<h3>' + userLocations[i].locationType + '</h3>'+
     '<p>'+  userLocations[i].description + '</p>'+
+    '<button id="edit-button-modal" class="test" type="button" data-toggle="modal" data-target="#edit-modal">' + 'Update' + '</button>' +
     '</div>'
+
+    
   });
 
 //-----------------------------------
@@ -73,3 +76,26 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         'Error: The Geolocation service failed.' :
         'Error: Your browser doesn\'t support geolocation.');
 }
+
+
+
+//this will display the location details
+ 
+	$(".test").click(function(event) {
+		event.preventDefault();
+		alert("yeah im working");
+		  
+		$.ajax({
+	        url: "http://localhost:8080/locations/2"
+	    }).then(function(data) {
+	    	$('#edit-name').append(data.name);
+	    	$('#edit-description').append(data.description);
+	    	$('#edit-type').append(data.locationType);
+	    	
+	    });
+		
+		
+		
+		});
+
+  
