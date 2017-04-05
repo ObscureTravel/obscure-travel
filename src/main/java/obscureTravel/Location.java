@@ -1,9 +1,13 @@
 package obscureTravel;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Location {
@@ -17,6 +21,9 @@ public class Location {
 	String longitude;
 	String locationType;
 	String description;
+	
+	@OneToMany(mappedBy = "location", fetch = FetchType.EAGER)
+	private Collection<Review> reviews;
 
 	protected Location() {
 	}
