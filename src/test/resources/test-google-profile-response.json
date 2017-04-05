@@ -1,0 +1,24 @@
+{
+  "kind": "plus#person",
+  "etag": "\"FT7X6cYw9BSnPtIywEFNNGVVdio/x_GjgRgxXuO1IcCAbrNlxYkhZF4\"",
+  "emails": [
+    {
+      "value": "obscure.travel.test@gmail.com",
+      "type": "account"
+    }
+  ],
+  "objectType": "person",
+  "id": "111766712704190932457",
+  "displayName": "Viator Obscura",
+  "name": {
+    "familyName": "Obscura",
+    "givenName": "Viator"
+  },
+  "image": {
+    "url": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg?sz=50",
+    "isDefault": true
+  },
+  "isPlusUser": false,
+  "language": "en",
+  "verified": false
+}
