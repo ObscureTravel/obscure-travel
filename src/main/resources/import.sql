@@ -5,3 +5,4 @@ insert into Location(name, latitude, longitude, location_Type, description) valu
 
 
 insert into Review(Location_id, title, content) values (1,'AWESOME SPOT!', 'Can''t imagine any better place to spend an afternoon with friends')
+insert into Review(Location_id, title, content) values (2,'SHITTY SPOT!', 'Miserable place with crappy people')

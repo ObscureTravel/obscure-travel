@@ -23,7 +23,7 @@ public class Location {
 	String description;
 	
 	@OneToMany(mappedBy = "location", fetch = FetchType.EAGER)
-	private Collection<Review> reviews;
+	private Collection<Review> review;
 
 	protected Location() {
 	}
