@@ -22,10 +22,12 @@ $.get("locations/showLocations", function(userLocations){
  for (var i = 0; i < userLocations.length; i++) {
   var coords1 = userLocations[i].latitude;
   var coords2 = userLocations[i].longitude;
+  
+  console.log(userLocations[i].reviews);
  // var testId = userLocations[i].id;
   var latLng = new google.maps.LatLng(coords1,coords2);
   var marker = new google.maps.Marker({
-    position: latLng,
+	position: latLng,
     map: map,
     title: userLocations[i].name,
     html:
@@ -33,10 +35,12 @@ $.get("locations/showLocations", function(userLocations){
     '<h1>' + userLocations[i].name+'</h1>' + 
     '<p>' + userLocations[i].locationType + '</p>'+
     '<p>'+  userLocations[i].description + '</p>'+
+    '<input id="location-Reviews" type="hidden" value="' + userLocations[i].reviews + '" />' +   //this will capture reviews Collection
     '<input id="testTest" type="hidden" value="' + userLocations[i].id + '" />' + 
     '<input id="testLatitude" type="hidden" value="' + coords1 + '" />' + 
     '<input id="testLongitude" type="hidden" value="' + coords2 + '" />' + 
     '<button id="edit-button-modal" type="button" data-toggle="modal" data-target="#edit-modal">' + 'Edit' + '</button>' +
+    '<button id="review-button-modal" type="button" data-toggle="modal" data-target="#review-modal">' + 'Reviews' + '</button>' +
     '</div>'
 
     
@@ -159,4 +163,38 @@ function validateForm() {
     return true;
     }
 }
+
+
+//this will display the Review Modal.
+
+$('#review-modal').on('show.bs.modal', function (event) {
+	
+	var element = $(event.relatedTarget);
+	document.getElementById("addReview").placeholder = "Add your Reviews about this place Here!!";
+	var reviews = $('#location-Reviews').val();
+	var reviewDiv = $('#reviews-div');
+	
+	console.log(reviews);
+
+
+		 for (var i = 0; i < reviews.length; i++) {
+			 
+			 html = '';
+				    
+			html +=	'<h3>' +reviews[i].userName +'</h3>\n'; 
+			html += '<p>' + reviews[i].content + '</p>\n';
+			
+			reviewDiv.append(html);
+
+		} 
+
+	
+	 
+});
+
+
+$('#add-Review').click(function() {
+	
+});
+
   
