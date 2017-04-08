@@ -1,4 +1,3 @@
-
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         center: {
@@ -30,16 +29,16 @@ $.get("locations/showLocations", function(userLocations){
     title: userLocations[i].name,
     html:
     '<div style=" height: 100%;">'+
-    '<h1>' + userLocations[i].name+'</h1>' + 
+    '<h1>' + userLocations[i].name+'</h1>' +
     '<p>' + userLocations[i].locationType + '</p>'+
     '<p>'+  userLocations[i].description + '</p>'+
-    '<input id="testTest" type="hidden" value="' + userLocations[i].id + '" />' + 
-    '<input id="testLatitude" type="hidden" value="' + coords1 + '" />' + 
-    '<input id="testLongitude" type="hidden" value="' + coords2 + '" />' + 
+    '<input id="testTest" type="hidden" value="' + userLocations[i].id + '" />' +
+    '<input id="testLatitude" type="hidden" value="' + coords1 + '" />' +
+    '<input id="testLongitude" type="hidden" value="' + coords2 + '" />' +
     '<button id="edit-button-modal" type="button" data-toggle="modal" data-target="#edit-modal">' + 'Edit' + '</button>' +
     '</div>'
 
-    
+
   });
 
 //-----------------------------------
@@ -49,7 +48,7 @@ $.get("locations/showLocations", function(userLocations){
     infoWindow.open(map, this);
   });
 
-} 
+}
 
 
 });
@@ -84,45 +83,45 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 
 //this will display the location details
- 
+
 $('#edit-modal').on('show.bs.modal', function (event) {
-	
-	
-	
+
+
+
 	 var element = $(event.relatedTarget);
 	 var locationId = $('#testTest').val();
-	 
+
 	 var modal = $(this);
-	 
+
 	 $.ajax({
 		 type: 'GET',
-		 url: '/locations/' + locationId, 
+		 url: '/locations/' + locationId,
 	 	 success: function (location) {
 			 modal.find('#edit-name').val(location.name);
 			 modal.find('#edit-description').val(location.description);
 			 modal.find('#edit-type').val(location.locationType);
-			 
+
 			}
 	 });
-	 
+
 });
 
 //this will update user location.
 
 $('#update-button').click(function(event) {
-	
+
 	event.preventDefault();
-	
+
     //This checked to make sure all filled are filled out
-    if (validateForm()){ 
-    	
+    if (validateForm()){
+
     	var locationId = $('#testTest').val(); //this gets the hidden id value
-    	
-    	
+
+
     	//ajax call gets the value and PUT in json and send back to the DB
     	$.ajax({
     		type: 'PUT',
-    		url: '/locations/location/' + locationId, 
+    		url: '/locations/location/' + locationId,
     		data: JSON.stringify({
       			id: locationId,
     			name: $('#edit-name').val(),
@@ -135,24 +134,24 @@ $('#update-button').click(function(event) {
          			 'Content-Type': 'application/json'
          		  },
          		'dataType': 'json'
-       
+
     	}).done(function() {
-    		
+
     		$('#edit-modal').modal('hide'); //this hides the model after update is clicked.
     		location.reload(); //this will refresh the page
-    		
+
     	});
-    	
+
     }
-    	
+
 });
 
 function validateForm() {
     var name = $('#edit-name').val();
     var description = $('#edit-description').val();
     var type = $('#edit-type').val();
-    
-    if (name == "" || description == "" || type == ""){ 
+
+    if (name == "" || description == "" || type == ""){
     	alert('all fields must be filled');
     	return false;
     }else {

@@ -5,18 +5,24 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="css/map.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    
+    <link href="css/stylesheet.css" type="text/css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Megrim" rel="stylesheet">
+
 </head>
 
 
 <body>
-
+  <!-- Header -->
+<div class="page-header">
+  <h1>OBSCURE TRAVEL</h1>
+</div>
     <!-- div for map display -->
     <div id="map">
     </div>
-	
+
 	<!-- Modal -->
+  <a data-toggle="modal" href="#edit-modal" class="btn btn-primary btn-lg"></a>
+
 	<div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
@@ -24,37 +30,37 @@
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	        <h4 class="modal-title" id="myModalLabel">Edit Location Information</h4>
 	      </div>
-	      
+
 	      <div id="edit-form" >
 	        	<form>
 			      Name: <input type='text' id='edit-name' required><br>
 			      Description: <input type='text' id='edit-description' required><br>
-			      Type:<input type='text' id='edit-type' required><br>		      
+			      Type:<input type='text' id='edit-type' required><br>
 			    </form>
 	      </div>
-	      
+
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	        <button type="button" class="btn btn-primary" id="update-button">Update</button>
 	      </div>
 	    </div>
 	  </div>
-	</div>
-	
-        
- 
+	 </div>
+  <footer>
+    <div class="container">
+
+    </div>
+  </footer>
+
+
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/mapMarkers.js"></script>
     <script src="js/userLocation.js"></script>
-    
+    <script src="js/bootstrap.min.js"></script>
+
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCccCLwK8Z1Z1sI8y3HnsOyy46P1rxPqNk&callback=initMap">
     </script>
-
+</link>
 </body>
 
 </html>
-
-
-
-
