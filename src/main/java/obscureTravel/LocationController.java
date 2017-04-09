@@ -25,7 +25,7 @@ public class LocationController {
 		
 		return locationRepository.findAll();
 	}
-	
+	  
 	@RequestMapping("/showbytype/{LocationType}")
 	public Iterable<Location> findByType(@PathVariable("LocationType")String LocationType) {
 		

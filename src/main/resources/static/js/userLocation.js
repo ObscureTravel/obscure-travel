@@ -1,4 +1,6 @@
-//var LocationFilter= $("#filtermap").val()
+var LocationFilter = sessionStorage.LocationFilter;// sessionStorage retains the value of any inputs during page reload.  
+ 
+
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         center: {
@@ -12,28 +14,44 @@ function initMap() {
     var infoWindow = new google.maps.InfoWindow({
         map: map
     });
+  
 
     
-    
-    //filter map locations-  
-    $("#filtermap").change(function(event){
-        LocationFilter= $("#filtermap").val()
-        event.preventDefault();
+   // if the Variable LocationFilter is undefined then Create a sessionStorage value and assign it to LocationFilter.
 
-        //  add user map data to the map through the db
-        // call jason and parse it creating markers
-       
-        if (LocationFilter == "All"){
+    if (!LocationFilter){
+        sessionStorage.LocationFilter = "All";
+        $("#filtermap").val(sessionStorage.LocationFilter)
+        LocationFilter=sessionStorage.LocationFilter    
+    }
 
-            $.get("locations/showLocations", function(userLocations){
-            displaySelectedLocations(userLocations);
-            });
-        }else{
-            $.get("locations/showbytype/"+LocationFilter, function(userLocations){
-            displaySelectedLocations(userLocations);
-            }); 
-        }
-    });
+    // choose the filter type upon click and update the sessionStorage value then reload page
+    $("#filtermap").change(function(event){  
+       sessionStorage.LocationFilter= $("#filtermap").val()
+       event.preventDefault();
+       location.reload(); //reload map when a filter is chosen
+    });   
+
+    //show all locations or filter by type
+    if (sessionStorage.LocationFilter  == "All"){
+
+        //LocationFilter=sessionStorage.LocationFilter
+        $.get("locations/showLocations", function(userLocations){
+        displaySelectedLocations(userLocations);
+        $("#filtermap").val(sessionStorage.LocationFilter)
+        });
+
+    }else{
+
+        LocationFilter=sessionStorage.LocationFilter
+        $.get("locations/showbytype/"+LocationFilter, function(userLocations){
+        displaySelectedLocations(userLocations);
+        $("#filtermap").val(sessionStorage.LocationFilter)
+        }); 
+
+        
+    }
+  
 
 
     // find geolocation
