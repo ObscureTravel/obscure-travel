@@ -193,7 +193,22 @@ $('#review-modal').on('show.bs.modal', function (event) {
 });
 
 
-$('#add-Review').click(function() {
+$('#add-Review').click(function(event) {
+	event.preventDefault();
+	
+	$.ajax({
+		type: 'POST',
+        url: '/reviews',
+        data: JSON.stringify({
+            userName: $('#reviewer-name').val(),
+            content: $('#review-content').val()
+        }),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        'dataType': 'json'
+	});
 	
 });
 

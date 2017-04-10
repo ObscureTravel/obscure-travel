@@ -6,5 +6,5 @@ insert into Location(name, latitude, longitude, location_Type, description) valu
 
 insert into review (content, location_id, user_name) values ( 'i dont like here', 1, 'keith')
 insert into review (content, location_id, user_name) values ( 'i dont like here', 1, 'keith')
-insert into review (content, location_id, user_name) values ( 'i dont like here', 1, 'keith')
-insert into review (content, location_id, user_name) values ( 'i dont like here', 1, 'keith')
+insert into review (content, location_id, user_name) values ( 'i dont like here', 2, 'keith')
+insert into review (content, location_id, user_name) values ( 'i dont like here', 2, 'keith')

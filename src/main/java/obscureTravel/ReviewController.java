@@ -26,10 +26,10 @@ public class ReviewController {
 		return reviewRepository.findAll();
 	}
 
-	@RequestMapping("/{id}")
-	public Iterable<Review> showReviewByLocation(@PathVariable Location location, Long id) {
-		location = locationRepository.findOne(id);
-		return reviewRepository.findByLocation(location);
+	@RequestMapping("/review/{locationId}")
+	public Iterable<Review> showReviewByLocation(@PathVariable Location location, Long locationId) {
+		locationId = location.getId();
+		return locationRepository.findByLocation(locationId);
 	}
 	
 	@PostMapping

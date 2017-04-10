@@ -39,7 +39,7 @@ public class Review {
 	public String getUserName() {
 		return userName;
 	}
-
+	
 	public Location getLocation() {
 		return location;
 	}
