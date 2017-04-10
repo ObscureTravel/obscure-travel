@@ -1,3 +1,5 @@
+var LocationFilter = sessionStorage.LocationFilter;// sessionStorage retains the value of any inputs during page reload.  
+ 
 
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -12,47 +14,44 @@ function initMap() {
     var infoWindow = new google.maps.InfoWindow({
         map: map
     });
-
-//  add user map data to the map through the db
-// call jason and parse it creating markers
-//-------------------------------------------------------
-$.get("locations/showLocations", function(userLocations){
-
-
- for (var i = 0; i < userLocations.length; i++) {
-  var coords1 = userLocations[i].latitude;
-  var coords2 = userLocations[i].longitude;
- // var testId = userLocations[i].id;
-  var latLng = new google.maps.LatLng(coords1,coords2);
-  var marker = new google.maps.Marker({
-    position: latLng,
-    map: map,
-    title: userLocations[i].name,
-    html:
-    '<div style=" height: 100%;">'+
-    '<h1>' + userLocations[i].name+'</h1>' + 
-    '<p>' + userLocations[i].locationType + '</p>'+
-    '<p>'+  userLocations[i].description + '</p>'+
-    '<input id="testTest" type="hidden" value="' + userLocations[i].id + '" />' + 
-    '<input id="testLatitude" type="hidden" value="' + coords1 + '" />' + 
-    '<input id="testLongitude" type="hidden" value="' + coords2 + '" />' + 
-    '<button id="edit-button-modal" type="button" data-toggle="modal" data-target="#edit-modal">' + 'Edit' + '</button>' +
-    '</div>'
+  
 
     
-  });
+   // if the Variable LocationFilter is undefined then Create a sessionStorage value and assign it to LocationFilter.
 
-//-----------------------------------
-// displys information about location when user clicks
-  google.maps.event.addListener(marker, 'click', function () {
-    infoWindow.setContent(this.html);
-    infoWindow.open(map, this);
-  });
+    if (!LocationFilter){
+        sessionStorage.LocationFilter = "All";
+        $("#filtermap").val(sessionStorage.LocationFilter)
+        LocationFilter=sessionStorage.LocationFilter    
+    }
 
-} 
+    // choose the filter type upon click and update the sessionStorage value then reload page
+    $("#filtermap").change(function(event){  
+       sessionStorage.LocationFilter= $("#filtermap").val()
+       event.preventDefault();
+       location.reload(); //reload map when a filter is chosen
+    });   
 
+    //show all locations or filter by type
+    if (sessionStorage.LocationFilter  == "All"){
 
-});
+        //LocationFilter=sessionStorage.LocationFilter
+        $.get("locations/showLocations", function(userLocations){
+        displaySelectedLocations(userLocations);
+        $("#filtermap").val(sessionStorage.LocationFilter)
+        });
+
+    }else{
+
+        LocationFilter=sessionStorage.LocationFilter
+        $.get("locations/showbytype/"+LocationFilter, function(userLocations){
+        displaySelectedLocations(userLocations);
+        $("#filtermap").val(sessionStorage.LocationFilter)
+        }); 
+
+        
+    }
+  
 
 
     // find geolocation
@@ -65,13 +64,48 @@ $.get("locations/showLocations", function(userLocations){
             infoWindow.setPosition(pos);
             infoWindow.setContent('Location found.');
             map.setCenter(pos);
-        }, function() {
+        },  function() {
             handleLocationError(true, infoWindow, map.getCenter());
         });
     } else {
         // Browser doesn't support Geolocation
         handleLocationError(false, infoWindow, map.getCenter());
     }
+
+
+    // function to get and display markers on the map
+    function displaySelectedLocations(userLocations){
+            //alert("im working");
+            for (var i = 0; i < userLocations.length; i++) {
+                var coords1 = userLocations[i].latitude;
+                var coords2 = userLocations[i].longitude;
+                // var testId = userLocations[i].id;
+                var latLng = new google.maps.LatLng(coords1,coords2);
+                var marker = new google.maps.Marker({
+                    position: latLng,
+                    map: map,
+                    title: userLocations[i].name,
+                    html:
+                    '<div style=" height: 100%;">'+
+                    '<h1>' + userLocations[i].name+'</h1>' + 
+                    '<p>' + userLocations[i].locationType + '</p>'+
+                    '<p>'+  userLocations[i].description + '</p>'+
+                    '<input id="testTest" type="hidden" value="' + userLocations[i].id + '" />' + 
+                    '<input id="testLatitude" type="hidden" value="' + coords1 + '" />' + 
+                    '<input id="testLongitude" type="hidden" value="' + coords2 + '" />' + 
+                    '<button id="edit-button-modal" type="button" data-toggle="modal" data-target="#edit-modal">' + 'Edit' + '</button>' +
+                    '</div>'    
+                });
+
+          
+               // displys information about location when user clicks marker
+                google.maps.event.addListener(marker, 'click', function () {
+                    infoWindow.setContent(this.html);
+                    infoWindow.open(map, this);
+                });
+
+            } 
+    }  
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -84,27 +118,27 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 
 //this will display the location details
- 
+
 $('#edit-modal').on('show.bs.modal', function (event) {
 	
 	
-	
-	 var element = $(event.relatedTarget);
-	 var locationId = $('#testTest').val();
-	 
-	 var modal = $(this);
-	 
-	 $.ajax({
-		 type: 'GET',
-		 url: '/locations/' + locationId, 
-	 	 success: function (location) {
-			 modal.find('#edit-name').val(location.name);
-			 modal.find('#edit-description').val(location.description);
-			 modal.find('#edit-type').val(location.locationType);
-			 
-			}
-	 });
-	 
+
+  var element = $(event.relatedTarget);
+  var locationId = $('#testTest').val();
+
+  var modal = $(this);
+
+  $.ajax({
+         type: 'GET',
+         url: '/locations/' + locationId, 
+         success: function (location) {
+            modal.find('#edit-name').val(location.name);
+            modal.find('#edit-description').val(location.description);
+            modal.find('#edit-type').val(location.locationType);
+
+        }
+    });
+
 });
 
 //this will update user location.
@@ -120,31 +154,30 @@ $('#update-button').click(function(event) {
     	
     	
     	//ajax call gets the value and PUT in json and send back to the DB
-    	$.ajax({
-    		type: 'PUT',
-    		url: '/locations/location/' + locationId, 
-    		data: JSON.stringify({
-      			id: locationId,
-    			name: $('#edit-name').val(),
-      			latitude: $('#testLatitude').val(),
-      			longitude: $('#testLongitude').val(),
-      			locationType: $('#edit-type').val(),
-      			description: $('#edit-description').val()
-      		  }), headers: {
-        			'Accept': 'application/json',
-         			 'Content-Type': 'application/json'
-         		  },
-         		'dataType': 'json'
-       
-    	}).done(function() {
-    		
-    		$('#edit-modal').modal('hide'); //this hides the model after update is clicked.
-    		location.reload(); //this will refresh the page
-    		
-    	});
-    	
+        	$.ajax({
+        		type: 'PUT',
+        		url: '/locations/location/' + locationId, 
+        		data: JSON.stringify({
+                     id: locationId,
+                     name: $('#edit-name').val(),
+                     latitude: $('#testLatitude').val(),
+                     longitude: $('#testLongitude').val(),
+                     locationType: $('#edit-type').val(),
+                     description: $('#edit-description').val()
+                }), headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+               'dataType': 'json'
+
+           }).done(function() {
+
+        		$('#edit-modal').modal('hide'); //this hides the model after update is clicked.
+        		location.reload(); //this will refresh the page
+        		
+        	});
     }
-    	
+
 });
 
 function validateForm() {
@@ -156,7 +189,43 @@ function validateForm() {
     	alert('all fields must be filled');
     	return false;
     }else {
-    return true;
+        return true;
     }
 }
-  
+
+
+
+//   function displaySelectedLocations(userLocations){
+//     //alert("im working");
+//        for (var i = 0; i < userLocations.length; i++) {
+//           var coords1 = userLocations[i].latitude;
+//           var coords2 = userLocations[i].longitude;
+//  // var testId = userLocations[i].id;
+//  var latLng = new google.maps.LatLng(coords1,coords2);
+//  var marker = new google.maps.Marker({
+//     position: latLng,
+//     map: map,
+//     title: userLocations[i].name,
+//     html:
+//     '<div style=" height: 100%;">'+
+//     '<h1>' + userLocations[i].name+'</h1>' + 
+//     '<p>' + userLocations[i].locationType + '</p>'+
+//     '<p>'+  userLocations[i].description + '</p>'+
+//     '<input id="testTest" type="hidden" value="' + userLocations[i].id + '" />' + 
+//     '<input id="testLatitude" type="hidden" value="' + coords1 + '" />' + 
+//     '<input id="testLongitude" type="hidden" value="' + coords2 + '" />' + 
+//     '<button id="edit-button-modal" type="button" data-toggle="modal" data-target="#edit-modal">' + 'Edit' + '</button>' +
+//     '</div>'
+
+
+// });
+
+// //-----------------------------------
+// // displys information about location when user clicks
+// google.maps.event.addListener(marker, 'click', function () {
+//     infoWindow.setContent(this.html);
+//     infoWindow.open(map, this);
+// });
+
+// } 
+// }

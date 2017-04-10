@@ -18,11 +18,18 @@ public class LocationController {
 
 	@Resource
 	LocationRepository locationRepository;
+	private String LocationType;
 
 	@RequestMapping("/showLocations")
 	public Iterable<Location> showLocations() {
 		
 		return locationRepository.findAll();
+	}
+	  
+	@RequestMapping("/showbytype/{LocationType}")
+	public Iterable<Location> findByType(@PathVariable("LocationType")String LocationType) {
+		
+		return locationRepository.findByLocationType(LocationType);
 	}
 
 	@RequestMapping("/{id}")
@@ -43,4 +50,7 @@ public class LocationController {
 		
 		return locationRepository.save(location);
 	}
+	
+	
+	
 }
