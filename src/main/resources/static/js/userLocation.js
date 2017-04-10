@@ -170,7 +170,7 @@ function validateForm() {
 $('#review-modal').on('show.bs.modal', function (event) {
 	
 	var element = $(event.relatedTarget);
-	document.getElementById("addReview").placeholder = "Add your Reviews about this place Here!!";
+	document.getElementById("review-content").placeholder = "Add your Reviews about this place Here!!";
 	var reviews = $('#location-Reviews').val();
 	var reviewDiv = $('#reviews-div');
 	

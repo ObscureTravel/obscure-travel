@@ -29,7 +29,7 @@ public class ReviewController {
 	@RequestMapping("/review/{locationId}")
 	public Iterable<Review> showReviewByLocation(@PathVariable Location location, Long locationId) {
 		locationId = location.getId();
-		return locationRepository.findByLocation(locationId);
+		return null;//locationRepository.findByLocation(locationId);
 	}
 	
 	@PostMapping
