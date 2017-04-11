@@ -3,14 +3,12 @@
 <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/stylesheet.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link href="css/stylesheet.css" type="text/css" rel="stylesheet" />
     <title>From Info Windows to a Database: Saving User-Added Form Data</title>
     <style>
         /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-       <link href="css/stylesheet.css" type="text/css" rel="stylesheet">
-
         #map {
             height: 100%;
         }
@@ -30,6 +28,10 @@
 
     <div class="header">
         <h1>OBSCURE TRAVEL</h1>
+        <div class="header-right">
+          <table>
+            <!--this is where ajax will populate user name and email-->
+          </table>
     </div>
 
     <div id="map" height="460px" width="100%"></div>
@@ -52,13 +54,11 @@
         </div>
     </footer>
 
-    <script src=" https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="js/addLocation.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCccCLwK8Z1Z1sI8y3HnsOyy46P1rxPqNk&callback=initMap">
     </script>
-    <script src="js/bootstrap.min.js"></script>
-    </link>
-    </link>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 
 </html>

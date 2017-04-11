@@ -162,3 +162,18 @@ $(document).ready(function () {
    });
 
 });
+
+$.getJSON("/user/name", function(name) {
+    var userName = name.name;
+
+  $.each( name, function( u , userName ) {
+    userName.push( "<table " + u + "'>" + userName + "</table>" );
+
+});
+  });
+
+  // $.get("/user/name", function(name) {
+  //   var userName = name.name;
+  //
+  //   console.log(userName);
+  // });

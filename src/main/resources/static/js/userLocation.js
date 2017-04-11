@@ -158,4 +158,8 @@ function validateForm() {
     return true;
     }
 }
-  
+  $.get("/user/info", function(userInfo) {
+    var userEmail = userInfo.emails;
+
+    console.log(userEmail);
+  });

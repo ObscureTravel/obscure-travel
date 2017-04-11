@@ -27,6 +27,7 @@ h1 {
     width: 100%;
     padding-top: 0px;
     margin-top: 0px;
+    height: 70px !important;
 }
 #edit-name, #edit-descriptiom, #edit-type {
   font-style: italic;
