@@ -22,8 +22,8 @@ function initMap() {
 		for (var i = 0; i < userLocations.length; i++) {
 			var coords1 = userLocations[i].latitude;
 			var coords2 = userLocations[i].longitude;
-
-			console.log(userLocations[i].reviews);
+ //var sammy =userLocations[i]
+			//console.log(sammy);
 	// var testId = userLocations[i].id;
 			var latLng = new google.maps.LatLng(coords1,coords2);
 			var marker = new google.maps.Marker({
@@ -35,16 +35,17 @@ function initMap() {
 				'<h1>' + userLocations[i].name+'</h1>' + 
 				'<p>' + userLocations[i].locationType + '</p>'+
 				'<p>'+  userLocations[i].description + '</p>'+
-				'<input id="location-Reviews" type="hidden" value="' + userLocations[i].reviews + '" />' +   //this will capture reviews Collection
+				'<div id="location-Reviews" type="hidden" value="' + userLocations[i] + '" ><div/>' +   //this will capture reviews Collection
 				'<input id="testTest" type="hidden" value="' + userLocations[i].id + '" />' + 
 				'<input id="testLatitude" type="hidden" value="' + coords1 + '" />' + 
 				'<input id="testLongitude" type="hidden" value="' + coords2 + '" />' + 
 				'<button id="edit-button-modal" type="button" data-toggle="modal" data-target="#edit-modal">' + 'Edit' + '</button>' +
 				'<button id="review-button-modal" type="button" data-toggle="modal" data-target="#review-modal">' + 'Reviews' + '</button>' +
 				'</div>'
-
+					
 
 			});
+			
 
 			//-----------------------------------
 			// displys information about location when user clicks
@@ -105,6 +106,7 @@ $('#edit-modal').on('show.bs.modal', function (event) {
 			modal.find('#edit-name').val(location.name);
 			modal.find('#edit-description').val(location.description);
 			modal.find('#edit-type').val(location.locationType);
+			
 
 		}
 	});
@@ -191,7 +193,14 @@ $('#review-modal').on('show.bs.modal', function (event) {
 
 			reviewDiv.append(html);
 			
-			$('#review-location').val(locationReviews[0].location)
+			
+
+
+			if (locationReviews.length > 0) {
+
+				$('#review-location').val(locationReviews[0].location)
+
+			}
 			
 		} 
 
@@ -199,11 +208,8 @@ $('#review-modal').on('show.bs.modal', function (event) {
 });
 
 
-
 $('#add-Review').click(function(event) {
 	event.preventDefault();
-
-
 	$.ajax({
 		type: 'POST',
 		url: '/reviews',
@@ -211,6 +217,7 @@ $('#add-Review').click(function(event) {
 			userName: $('#reviewer-name').val(),
 			content: $('#review-content').val(),
 			location: $('#review-location').val()
+			
 		}),
 
 		headers: {
@@ -224,6 +231,7 @@ $('#add-Review').click(function(event) {
 	location.reload(); //this will refresh the page
 	
 	});
+
 
 });
 	  
