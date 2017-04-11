@@ -22,6 +22,7 @@ function initMap() {
 		for (var i = 0; i < userLocations.length; i++) {
 			var coords1 = userLocations[i].latitude;
 			var coords2 = userLocations[i].longitude;
+			//console.log(userLocations[i])
  //var sammy =userLocations[i]
 			//console.log(sammy);
 	// var testId = userLocations[i].id;
@@ -36,7 +37,7 @@ function initMap() {
 				'<p>' + userLocations[i].locationType + '</p>'+
 				'<p>'+  userLocations[i].description + '</p>'+
 				'<div id="location-Reviews" type="hidden" value="' + userLocations[i] + '" ><div/>' +   //this will capture reviews Collection
-				'<input id="testTest" type="hidden" value="' + userLocations[i].id + '" />' + 
+				'<input id="testTest" type="hidden" value="' + userLocations[i].id+ '" />' + 
 				'<input id="testLatitude" type="hidden" value="' + coords1 + '" />' + 
 				'<input id="testLongitude" type="hidden" value="' + coords2 + '" />' + 
 				'<button id="edit-button-modal" type="button" data-toggle="modal" data-target="#edit-modal">' + 'Edit' + '</button>' +
@@ -177,7 +178,11 @@ $('#review-modal').on('show.bs.modal', function (event) {
 	var reviewDiv = $('#reviews-div');
 
 	var id = $('#testTest').val();
- 
+
+
+	$.get("locations/"+id, function(eachData){// get the location information for each marker when clicked	
+	$('#review-location').val(eachData)
+		});	 
 
 
 	$.get("reviews/review/"+ id, function(locationReviews){
@@ -193,15 +198,6 @@ $('#review-modal').on('show.bs.modal', function (event) {
 
 			reviewDiv.append(html);
 			
-			
-
-
-			if (locationReviews.length > 0) {
-
-				$('#review-location').val(locationReviews[0].location)
-
-			}
-			
 		} 
 
 	});	 
@@ -209,7 +205,10 @@ $('#review-modal').on('show.bs.modal', function (event) {
 
 
 $('#add-Review').click(function(event) {
-	event.preventDefault();
+	
+//console.log($('#review-location').val())
+
+		event.preventDefault();
 	$.ajax({
 		type: 'POST',
 		url: '/reviews',
