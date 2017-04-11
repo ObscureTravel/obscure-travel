@@ -4,7 +4,7 @@ insert into Location(name, latitude, longitude, location_Type, description) valu
 insert into Location(name, latitude, longitude, location_Type, description) values ('keuth''s', '40.000', '-81.0114', 'eatery', 'best bar in town')
 insert into Location(name, latitude, longitude, location_Type, description) values ('Terrys', '42.0261', '-85.0147', 'location_Type', 'description')
 
-insert into review (content, location_id, user_name) values ( 'i dont like here', 1, 'keith')
-insert into review (content, location_id, user_name) values ( 'i dont like here', 1, 'keith')
-insert into review (content, location_id, user_name) values ( 'i dont like here', 2, 'keith')
-insert into review (content, location_id, user_name) values ( 'i dont like here', 2, 'keith')
+insert into review (content, location_id, user_name) values ( 'i love', 1, 'joe')
+insert into review (content, location_id, user_name) values ( 'i dont like here', 1, 'jim')
+insert into review (content, location_id, user_name) values ( 'best ever', 2, 'keith')
+insert into review (content, location_id, user_name) values ( 'chew food', 2, 'scott')
