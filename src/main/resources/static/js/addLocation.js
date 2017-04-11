@@ -66,7 +66,8 @@
 
 
       $(document).ready(function() {
-
+        // $.get('/**', function(userInfo){
+        //   $('#userName').on(userInfo);
           $('#save-button').click(function(event) {
               // we don’t want the button to actually submit  --- we'll handle data submission via ajax
               event.preventDefault();
@@ -105,7 +106,7 @@
                   //close info window
                   infowindow.close();
                   // messagewindow.open(map, marker);
-
+});
                   //this should clear the fields
                   // $('#name').val('');
                   // $('#description').val('');
@@ -113,23 +114,23 @@
               });
 
           });
-        });
+        // });
       }
 
-      
-$(document).ready(function () {    
-      
+
+$(document).ready(function () {
+
       $('#save-button').click(function (event) {
     	// we don’t want the button to actually submit  --- we'll handle data submission via ajax
   	  event.preventDefault();
-  	  
-  	
-  	  
-  	
+
+
+
+
   	  var latlng = marker.getPosition();
   	  var type = $('#type :selected').val();
-  	  
-  	  
+
+
   	  $.ajax({			// Make an Ajax call to the server. HTTP verb = POST, URL = locations
   		  type: 'POST',
   		  url: '/locations',
@@ -144,20 +145,20 @@ $(document).ready(function () {
   			'Accept': 'application/json',
   			 'Content-Type': 'application/json'
   		  },
-  		'dataType': 'json'	  
+  		'dataType': 'json'
   	  }).success(function(data, status) { // If the call succeeds, clear the form and reload the summary table
-  		  
-  		  
-  		  	
+
+
+
 	  		infowindow.close();
             messagewindow.open(map, marker);
-            
+
             //this should clear the fields
             $('#name').val('');
             $('#description').val('');
-  		  
+
   	  });
-    	  
+
    });
-      
+
 });

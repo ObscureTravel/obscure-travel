@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 public class UserInfo {
 
 	private JsonNode profileInfo;
-
+	
 	public UserInfo(JsonNode profileInfo) {
 		this.profileInfo = profileInfo;
 	}
