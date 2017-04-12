@@ -15,8 +15,10 @@ function initMap() {
         map: map
     });
   
+//--------------------------------------------------------------------------------
 
-    
+
+//    -----------------------------------------------------------------------
    // if the Variable LocationFilter is undefined then Create a sessionStorage value and assign it to LocationFilter.
 
     if (!LocationFilter){
@@ -90,10 +92,12 @@ function initMap() {
                     '<h1>' + userLocations[i].name+'</h1>' + 
                     '<p>' + userLocations[i].locationType + '</p>'+
                     '<p>'+  userLocations[i].description + '</p>'+
-                    '<input id="testTest" type="hidden" value="' + userLocations[i].id + '" />' + 
-                    '<input id="testLatitude" type="hidden" value="' + coords1 + '" />' + 
-                    '<input id="testLongitude" type="hidden" value="' + coords2 + '" />' + 
-                    '<button id="edit-button-modal" type="button" data-toggle="modal" data-target="#edit-modal">' + 'Edit' + '</button>' +
+                    '<div id="location-Reviews" type="hidden" value="' + userLocations[i] + '" ><div/>' +   //this will capture reviews Collection
+                '<input id="testTest" type="hidden" value="' + userLocations[i].id+ '" />' + 
+                '<input id="testLatitude" type="hidden" value="' + coords1 + '" />' + 
+                '<input id="testLongitude" type="hidden" value="' + coords2 + '" />' + 
+                '<button id="edit-button-modal" type="button" data-toggle="modal" data-target="#edit-modal">' + 'Edit' + '</button>' +
+                '<button id="review-button-modal" type="button" data-toggle="modal" data-target="#review-modal">' + 'Reviews' + '</button>' +
                     '</div>'    
                 });
 
@@ -193,39 +197,71 @@ function validateForm() {
     }
 }
 
+//this will display the Review Modal.
+
+$('#review-modal').on('show.bs.modal', function (event) {
+
+    var element = $(event.relatedTarget);
+    document.getElementById("review-content").placeholder = "Add your Reviews about this place Here!!";
+    var reviewDiv = $('#reviews-div');
+
+    var id = $('#testTest').val();
 
 
-//   function displaySelectedLocations(userLocations){
-//     //alert("im working");
-//        for (var i = 0; i < userLocations.length; i++) {
-//           var coords1 = userLocations[i].latitude;
-//           var coords2 = userLocations[i].longitude;
-//  // var testId = userLocations[i].id;
-//  var latLng = new google.maps.LatLng(coords1,coords2);
-//  var marker = new google.maps.Marker({
-//     position: latLng,
-//     map: map,
-//     title: userLocations[i].name,
-//     html:
-//     '<div style=" height: 100%;">'+
-//     '<h1>' + userLocations[i].name+'</h1>' + 
-//     '<p>' + userLocations[i].locationType + '</p>'+
-//     '<p>'+  userLocations[i].description + '</p>'+
-//     '<input id="testTest" type="hidden" value="' + userLocations[i].id + '" />' + 
-//     '<input id="testLatitude" type="hidden" value="' + coords1 + '" />' + 
-//     '<input id="testLongitude" type="hidden" value="' + coords2 + '" />' + 
-//     '<button id="edit-button-modal" type="button" data-toggle="modal" data-target="#edit-modal">' + 'Edit' + '</button>' +
-//     '</div>'
+    $.get("locations/"+id, function(eachData){// get the location information for each marker when clicked  
+    $('#review-location').val(eachData)
+    var goo = eachData;
+    console.log(goo.name)
+        });  
 
 
-// });
+    $.get("reviews/review/"+ id, function(locationReviews){
+        
+        $("#reviews-div").html("");// empties the Modal when it is opened
 
-// //-----------------------------------
-// // displys information about location when user clicks
-// google.maps.event.addListener(marker, 'click', function () {
-//     infoWindow.setContent(this.html);
-//     infoWindow.open(map, this);
-// });
+        for (var i = 0; i < locationReviews.length; i++) {
 
-// } 
-// }
+            html = '';
+
+            html += '<h3>' +locationReviews[i].userName +'</h3>\n'; 
+            html += '<p>' + locationReviews[i].content + '</p>\n';
+
+            reviewDiv.append(html);
+            
+        } 
+
+    });  
+});
+
+
+$('#add-Review').click(function(event) {
+    
+//console.log($('#review-location').val())
+
+        event.preventDefault();
+    $.ajax({
+        type: 'POST',
+        url: '/reviews',
+        data: JSON.stringify({
+            userName: $('#reviewer-name').val(),
+            content: $('#review-content').val(),
+            location: $('#review-location').val()
+            
+        }),
+
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },'dataType': 'json'
+    }).done(function() {
+
+    $('#edit-modal').modal('hide'); //this hides the model after update is clicked.
+    
+    location.reload(); //this will refresh the page
+    
+    });
+
+
+});
+
+
