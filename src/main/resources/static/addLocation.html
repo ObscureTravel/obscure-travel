@@ -4,24 +4,26 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/map.css" />
+
     <link href="css/stylesheet.css" type="text/css" rel="stylesheet" />
     <title>From Info Windows to a Database: Saving User-Added Form Data</title>
-    <style>
-        /* Always set the map height explicitly to define the size of the div
+    <!-- /*<style>*/ -->
+    <!-- /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-
+/*
         #map {
             height: 100%;
-        }
+        }*/
         /* Optional: Makes the sample page fill the window. */
 
-        html,
+        /*html,
         body {
             height: 100%;
             margin: 0;
             padding: 0;
         }
-    </style>
+    </style>*/ -->
 </head>
 
 
@@ -34,33 +36,35 @@
                 <!--this is where ajax will populate user name and email-->
             </table>
         </div>
+    </div>
+    <div id="map"></div>
 
-        <div id="map" height="460px" width="100%"></div>
-        <div id="form">
-            <form action="/locations" method="POST">
-                Name: <input type='text' id='name'><br> Description: <input type='text' id='description' /><br> Type:
-                <input type='text' id='type' />
-                <br>
-                <button type='submit' id='save-button' value='submit'>Submit</button>
-            </form>
+    <div id="form">
+        <form action="/locations" method="POST">
+            Name: <input type='text' id='name'><br> Description: <input type='text' id='description' /><br> Type:
+            <input type='text' id='type' />
+            <br>
+            <button type='submit' id='save-button' value='submit'>Submit</button>
+        </form>
+    </div>
+    <div id="message">Location saved</div>
+
+    <footer>
+        <div class="footer">
+            <p class="footer-links"><a href="" color="#fff">About</a>
+                <a href="" color="#fff">Team Photos</a>
+                <a href="" color="#fff">Contact Us</a>
+            </p>
         </div>
-        <div id="message">Location saved</div>
+    </footer>
 
-        <footer>
-            <div class="footer">
-                <p class="footer-links"><a href="" color="#fff">About</a>
-                    <a href="" color="#fff">Team Photos</a>
-                    <a href="" color="#fff">Contact Us</a>
-                </p>
-            </div>
-        </footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="js/addLocation.js"></script>
+    <script src="js/userInfo.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCccCLwK8Z1Z1sI8y3HnsOyy46P1rxPqNk&callback=initMap">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script src="js/addLocation.js"></script>
-        <script src="js/userInfo.js"></script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCccCLwK8Z1Z1sI8y3HnsOyy46P1rxPqNk&callback=initMap">
-        </script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 
 </html>

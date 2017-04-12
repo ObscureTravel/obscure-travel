@@ -7,7 +7,8 @@ $(document).ready(function() {
         $.each(userName, function(key, value) {
 
             // below we'll append 'value' to specific DIV
-            console.log(value);
+
+            console.log(value); // just to test the right value showed in browser
         });
 
     });
