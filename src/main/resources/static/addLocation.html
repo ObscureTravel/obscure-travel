@@ -9,6 +9,7 @@
     <style>
         /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
+
         #map {
             height: 100%;
         }
@@ -29,36 +30,37 @@
     <div class="header">
         <h1>OBSCURE TRAVEL</h1>
         <div class="header-right">
-          <table>
-            <!--this is where ajax will populate user name and email-->
-          </table>
-    </div>
-
-    <div id="map" height="460px" width="100%"></div>
-    <div id="form">
-        <form action="/locations" method="POST">
-            Name: <input type='text' id='name'><br> Description: <input type='text' id='description' /><br> Type:
-            <input type='text' id='type' />
-            <br>
-            <button type='submit' id='save-button' value='submit'>Submit</button>
-        </form>
-    </div>
-    <div id="message">Location saved</div>
-
-    <footer>
-        <div class="footer">
-            <p class="footer-links"><a href="" color="#fff">About</a>
-                <a href="" color="#fff">Team Photos</a>
-                <a href="" color="#fff">Contact Us</a>
-            </p>
+            <table>
+                <!--this is where ajax will populate user name and email-->
+            </table>
         </div>
-    </footer>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="js/addLocation.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCccCLwK8Z1Z1sI8y3HnsOyy46P1rxPqNk&callback=initMap">
-    </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <div id="map" height="460px" width="100%"></div>
+        <div id="form">
+            <form action="/locations" method="POST">
+                Name: <input type='text' id='name'><br> Description: <input type='text' id='description' /><br> Type:
+                <input type='text' id='type' />
+                <br>
+                <button type='submit' id='save-button' value='submit'>Submit</button>
+            </form>
+        </div>
+        <div id="message">Location saved</div>
+
+        <footer>
+            <div class="footer">
+                <p class="footer-links"><a href="" color="#fff">About</a>
+                    <a href="" color="#fff">Team Photos</a>
+                    <a href="" color="#fff">Contact Us</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="js/addLocation.js"></script>
+        <script src="js/userInfo.js"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCccCLwK8Z1Z1sI8y3HnsOyy46P1rxPqNk&callback=initMap">
+        </script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 
 </html>

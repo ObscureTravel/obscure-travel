@@ -15,7 +15,7 @@ public class UserInfoController {
 	@RequestMapping("/name")
 	public String returnUserInfo(){
 		
-		return String.format("{ 'name': '%s' }", userInfo.getName());
+		return String.format("{\"name\":\"%s\"}", userInfo.getName());
 	}
 	
 }
