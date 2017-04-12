@@ -182,6 +182,7 @@ $('#review-modal').on('show.bs.modal', function (event) {
 
 	$.get("locations/"+id, function(eachData){// get the location information for each marker when clicked	
 	$('#review-location').val(eachData)
+	
 		});	 
 
 
