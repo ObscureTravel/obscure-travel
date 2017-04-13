@@ -1,0 +1,11 @@
+.mdl-textfield__label {
+    color: #3F51B5;
+}
+
+#form {
+    display: none;
+}
+
+.content-align-center {
+    text-align: center;
+}

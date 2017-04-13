@@ -9,19 +9,23 @@ public class UserInfo {
 	public UserInfo(JsonNode profileInfo) {
 		this.profileInfo = profileInfo;
 	}
-	
+
+	public JsonNode getProfileInfo() {
+		return profileInfo;
+	}
+
 	public String getName() {
 		return profileInfo.findPath("displayName").asText();
 	}
-	
+
 	public String getEmail() {
 		JsonNode emails = profileInfo.findPath("emails");
 		return findAccountEmail(emails);
 	}
 
 	private String findAccountEmail(JsonNode emails) {
-		for(JsonNode node: emails) {
-			if(isEmailAccount(node)) {
+		for (JsonNode node : emails) {
+			if (isEmailAccount(node)) {
 				return node.findPath("value").asText();
 			}
 		}
@@ -32,11 +36,10 @@ public class UserInfo {
 		String emailType = node.findPath("type").asText();
 		return emailType.equals("account");
 	}
-	
+
 	@Override
 	public String toString() {
 		return "user info: " + profileInfo;
 	}
 
-	
 }

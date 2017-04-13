@@ -1,41 +1,102 @@
 <!DOCTYPE html >
-  <head>
+
+<head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-    <title>From Info Windows to a Database: Saving User-Added Form Data</title>
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-  </head>
-  
-  
-  <body>
-    <div id="map" height="460px" width="100%"></div>
-    <div id="form">
-      <form action="/locations" method="POST">
-      Name: <input type='text' id='name'><br>
-      Description: <input type='text' id='description'/><br>
-      Type:<input type='text' id='type'/> 
-           <br>
-        <button type='submit' id='save-button' value='submit'>Submit</button>
-      </form>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-blue.min.css" />
+    <link rel="stylesheet" href="/css/map.css" />
+    <link rel="stylesheet" href="/css/addLocation.css" />
+
+    <title>Add Location</title>
+</head>
+
+
+<body>
+
+    <!-- Always shows a header, even in smaller screens. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+
+                <!-- Title -->
+                <span class="mdl-layout-title">Obscure Travel</span>
+
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer"></div>
+            </div>
+        </header>
+
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">Obscure Travel</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="">Link</a>
+                <a class="mdl-navigation__link" href="">Link</a>
+                <a class="mdl-navigation__link" href="">Link</a>
+                <a class="mdl-navigation__link" href="">Link</a>
+            </nav>
+        </div>
+
+
+        <div id="map"></div>
+
+        <div id="form">
+            <form action="/locations" method="POST">
+                <table>
+                    <tr>
+                        <td>
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="text" id="name">
+                                <label class="mdl-textfield__label" for="name">Name</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="text" id="type">
+                                <label class="mdl-textfield__label" for="type">Type</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="text" id="description">
+                                <label class="mdl-textfield__label" for="description">Description</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" type='submit' id='save-button' value='submit'>Submit</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
+
+        <footer class="mdl-mini-footer">
+            <div class="mdl-mini-footer__left-section">
+                <div class="mdl-logo">Obscure Travel</div>
+                <ul class="mdl-mini-footer__link-list">
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Team Photos</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </footer>
+
     </div>
-    <div id="message">Location saved</div>
-    
+
     <script src=" https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
     <script src="js/addLocation.js"></script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCccCLwK8Z1Z1sI8y3HnsOyy46P1rxPqNk&callback=initMap">
+    <script src="js/userInfo.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCccCLwK8Z1Z1sI8y3HnsOyy46P1rxPqNk&callback=initMap">
     </script>
-  </body>
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+</body>
+
 </html>

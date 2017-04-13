@@ -25,9 +25,6 @@ public class GoogleProfileRequest {
 	private OAuth2ClientContext clientContext;
 
 	@Resource
-	private HttpUriRequest googleProfileRequest;
-
-	@Resource
 	private ResponseDeserializer deserializer;
 
 	private static final String PROFILE_INFO_URI = "https://www.googleapis.com/plus/v1/people/me";
