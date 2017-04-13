@@ -74,6 +74,7 @@ function initMap() {
         handleLocationError(false, infoWindow, map.getCenter());
     }
 
+    
 
     // function to get and display markers on the map
     function displaySelectedLocations(userLocations){
@@ -218,17 +219,24 @@ $('#review-modal').on('show.bs.modal', function (event) {
     $.get("reviews/review/"+ id, function(locationReviews){
         
         $("#reviews-div").html("");// empties the Modal when it is opened
+        
 
         for (var i = 0; i < locationReviews.length; i++) {
 
             html = '';
-
+            
+            html += '<p><span class="stars">' +locationReviews[i].rating +'</span></p>\n';
             html += '<h3>' +locationReviews[i].userName +'</h3>\n'; 
-            html += '<p>' + locationReviews[i].content + '</p>\n';
+            html += '<p><i>"' + locationReviews[i].content + '"</i></p><hr>';
 
             reviewDiv.append(html);
             
+			
+            
         } 
+        
+        //this will MAGICALLY change span stars class number to Magic STARS
+        $('span.stars').stars();
 
     });  
 });
@@ -239,29 +247,58 @@ $('#add-Review').click(function(event) {
 //console.log($('#review-location').val())
 
         event.preventDefault();
-    $.ajax({
-        type: 'POST',
-        url: '/reviews',
-        data: JSON.stringify({
-            userName: $('#reviewer-name').val(),
-            content: $('#review-content').val(),
-            location: $('#review-location').val()
-            
-        }),
+        
+        
+//this make sure all the filled are filled before adding a review
+        if(reviewValidateForm()) {
+        	
+        	   $.ajax({
+        	        type: 'POST',
+        	        url: '/reviews',
+        	        data: JSON.stringify({
+        	            userName: $('#reviewer-name').val(),
+        	            rating: $('#review-rating').val(),
+        	            content: $('#review-content').val(),
+        	            location: $('#review-location').val()
+        	            
+        	        }),
 
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },'dataType': 'json'
-    }).done(function() {
+        	        headers: {
+        	            'Accept': 'application/json',
+        	            'Content-Type': 'application/json'
+        	        },'dataType': 'json'
+        	    }).done(function() {
 
-    $('#edit-modal').modal('hide'); //this hides the model after update is clicked.
-    
-    location.reload(); //this will refresh the page
-    
-    });
+        	    $('#review-modal').modal('hide'); //this hides the model after update is clicked.
+        	    
+        	    location.reload(); //this will refresh the page
+        	    
+        	    });
+        }
 
 
 });
+
+function reviewValidateForm() {
+    var reviewerName = $('#reviewer-name').val();
+    var Rating = $('#review-rating').val();
+    var textArea = $('#review-content').val();
+    
+    if (name == "" || Rating == "" || textArea == ""){ 
+    	alert('all fields must be filled');
+    	return false;
+    }else {
+        return true;
+    }
+}
+
+//stars function
+$.fn.stars = function() {
+	return $(this).each(function() {
+		$(this).html($('<span />').width(Math.max(0, (Math.min(5, parseFloat($(this).html())))) * 16));
+	});
+}
+
+
 
 
