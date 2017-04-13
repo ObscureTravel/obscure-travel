@@ -7,7 +7,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -20,8 +19,8 @@ public class Location {
 	private long id;
 	
 	String name;
-	String latitude;
-	String longitude;
+	double latitude;
+	double longitude;
 	String locationType;
 	String description;
 	
@@ -33,7 +32,7 @@ public class Location {
 	protected Location() {
 	}
 
-	public Location(String name, String latitude, String longitude, String locationType, String description,
+	public Location(String name, double latitude, double longitude, String locationType, String description,
 			Collection<Review> reviews) {
 		this.name = name;
 		this.latitude = latitude;
@@ -51,11 +50,11 @@ public class Location {
 		return name;
 	}
 
-	public String getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
 
-	public String getLongitude() {
+	public double getLongitude() {
 		return longitude;
 	}
 
