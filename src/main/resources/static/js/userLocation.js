@@ -284,7 +284,7 @@ function reviewValidateForm() {
     var Rating = $('#review-rating').val();
     var textArea = $('#review-content').val();
     
-    if (name == "" || Rating == "" || textArea == ""){ 
+    if (reviewerName == "" || Rating == "" || textArea == ""){ 
     	alert('all fields must be filled');
     	return false;
     }else {
