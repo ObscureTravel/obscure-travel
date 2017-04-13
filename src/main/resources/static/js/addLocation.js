@@ -9,27 +9,27 @@
 
   function initMap() {
       navigator.geolocation.getCurrentPosition(function(position) {
-          initialPosition = {
+          var initialPosition = {
               lat: position.coords.latitude,
               lng: position.coords.longitude
           };
           console.log("1");
           map.setCenter(initialPosition);
       });
-      map = new google.maps.Map(document.getElementById('map'), {
+      var map = new google.maps.Map(document.getElementById('map'), {
           center: initialPosition,
           zoom: 13
       });
       console.log("2");
 
       //The code below creates a new info window object that retrieves the form element on clicking a marker.
-      infowindow = new google.maps.InfoWindow({
+      var infowindow = new google.maps.InfoWindow({
           content: document.getElementById('form')
       })
 
       console.log("3");
       //The code below creates a new info window object that retrieves the message element on saving the info window form.
-      messagewindow = new google.maps.InfoWindow({
+      var messagewindow = new google.maps.InfoWindow({
           content: document.getElementById('message')
       });
 
@@ -50,12 +50,13 @@
 
               map.setCenter(usersPosition);
 
-              marker = new google.maps.Marker({
+              var marker = new google.maps.Marker({
                   position: usersPosition,
                   map: map,
                   icon: 'images/greyLocationMarker.png'
               });
 
+              document.getElementById('form').style.display = "block";
               infowindow.open(map, marker);
               //The code below assigns a click listener to the marker which displays an info window when the user clicks the marker.
               // google.maps.event.addListener(marker, 'click', function() {
