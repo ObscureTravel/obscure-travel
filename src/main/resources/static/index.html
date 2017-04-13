@@ -4,58 +4,78 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="css/map.css">
-    <link href="css/stylesheet.css" type="text/css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Megrim" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-blue.min.css" />
 </head>
 
 
 <body>
-    <!-- Header -->
-    <div class="header">
-        <h1>OBSCURE TRAVEL</h1>
-        <div class="header-right">
-            <table>
-                <!--this is where ajax will populate user name and email-->
-            </table>
+
+    <!-- Always shows a header, even in smaller screens. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+
+                <!-- Title -->
+                <span class="mdl-layout-title">Obscure Travel</span>
+
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer"></div>
+            </div>
+        </header>
+
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">Obscure Travel</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="">Link</a>
+                <a class="mdl-navigation__link" href="">Link</a>
+                <a class="mdl-navigation__link" href="">Link</a>
+                <a class="mdl-navigation__link" href="">Link</a>
+            </nav>
         </div>
-    </div>
-    <!-- div for map display -->
-    <div id="map">
-    </div>
 
-    <!-- Modal -->
+        <!-- div for map display -->
+        <div id="map">
+        </div>
 
-    <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Edit Location Information</h4>
-                </div>
+        <!-- Modal -->
 
-                <div id="edit-form">
-                    <form>
-                        Name: <input type='text' id='edit-name' required><br> Description: <input type='text' id='edit-description' required><br> Type:
-                        <input type='text' id='edit-type' required><br>
-                    </form>
-                </div>
+        <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Edit Location Information</h4>
+                    </div>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="update-button">Update</button>
+                    <div id="edit-form">
+                        <form>
+                            Name: <input type='text' id='edit-name' required><br> Description: <input type='text' id='edit-description' required><br> Type:
+                            <input type='text' id='edit-type' required><br>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="update-button">Update</button>
+                    </div>
                 </div>
             </div>
         </div>
+        <footer class="mdl-mini-footer">
+            <div class="mdl-mini-footer__left-section">
+                <div class="mdl-logo">Obscure Travel</div>
+                <ul class="mdl-mini-footer__link-list">
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Team Photos</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </footer>
+
     </div>
-    <footer>
-        <div class="footer">
-            <p class="footer-links"><a href="" color="#fff">About</a>
-                <a href="" color="#fff">Team Photos</a>
-                <a href="" color="#fff">Contact Us</a>
-            </p>
-        </div>
-    </footer>
 
     <script src="js/mapMarkers.js"></script>
     <script src="js/userLocation.js"></script>
@@ -63,6 +83,7 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCccCLwK8Z1Z1sI8y3HnsOyy46P1rxPqNk&callback=initMap">
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     </link>
 </body>
 
