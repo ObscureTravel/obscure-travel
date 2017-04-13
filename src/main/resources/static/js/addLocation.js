@@ -18,7 +18,7 @@
       });
       var map = new google.maps.Map(document.getElementById('map'), {
           center: initialPosition,
-          zoom: 13
+          zoom: 17
       });
       console.log("2");
 
