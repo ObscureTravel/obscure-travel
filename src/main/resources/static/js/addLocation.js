@@ -97,5 +97,6 @@ function initMap() {
             });
 
         });
+
     });
 }

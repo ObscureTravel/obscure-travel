@@ -2,18 +2,13 @@ package obscureTravel;
 
 import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
-import obscureTravel.security.UserInfo;
 
 @RestController
 @RequestMapping("/locations")
@@ -21,19 +16,18 @@ public class LocationController {
 
 	@Resource
 	LocationRepository locationRepository;
-	
-//	@Autowired
-//	UserInfo userInfo;
-//	
-//	@RequestMapping("/userInfo")
-//	public String userInfo(){
-//		return userInfo.getName();
-//	}
-	
+	private String LocationType;
+
 	@RequestMapping("/showLocations")
 	public Iterable<Location> showLocations() {
 		
 		return locationRepository.findAll();
+	}
+	  
+	@RequestMapping("/showbytype/{LocationType}")
+	public Iterable<Location> findByType(@PathVariable("LocationType")String LocationType) {
+		
+		return locationRepository.findByLocationType(LocationType);
 	}
 
 	@RequestMapping("/{id}")
@@ -54,4 +48,7 @@ public class LocationController {
 		
 		return locationRepository.save(location);
 	}
+	
+	
+	
 }

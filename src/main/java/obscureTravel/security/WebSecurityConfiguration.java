@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http //
@@ -17,8 +16,17 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatcher("/**").authorizeRequests() //
 				.antMatchers("/oauth2-permitAll.html").permitAll() //
 				.antMatchers("/locations/**").permitAll() //
+				.antMatchers("/reviews/**").permitAll() //
 				.antMatchers("/index.html").permitAll() //
+
+	
+
+
+				.antMatchers("/h2-console/**").permitAll() //
+
 				.anyRequest().authenticated();
+
+		http.headers().frameOptions().disable();
 	}
 
 }

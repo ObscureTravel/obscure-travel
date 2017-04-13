@@ -4,22 +4,14 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="css/map.css">
-    <link href="css/stylesheet.css" type="text/css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Megrim" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
 
 <body>
-    <!-- Header -->
-    <div class="header">
-        <h1>OBSCURE TRAVEL</h1>
-        <div class="header-right">
-            <table>
-                <!--this is where ajax will populate user name and email-->
-            </table>
-        </div>
-    </div>
+
     <!-- div for map display -->
     <div id="map">
     </div>
@@ -57,13 +49,96 @@
         </div>
     </footer>
 
+    <div height:100px;>
+
+        <!--<div><h2> find the obscure</h2></div>  -->
+        <div>
+            <form action="">
+                <select id="filtermap">
+    <option value="All">All</option>
+    <option value="Eatery">Eatery</option>
+    <option value="Bar">Bar</option>
+    <option value="Natural Wonder">Natural Wonder</option>
+    <option value="Event">Events</option>
+    <option value="People Watching">People Watching</option>
+    <option value="Resting Places">Resting Places</option>
+    <option value="Venue">Venue</option>
+  </select>
+
+
+            </form>
+        </div>
+    </div>
+    </div>
+
+    <!-- div for map display -->
+    <div id="map">
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Edit Location Information</h4>
+                </div>
+
+                <div id="edit-form">
+                    <form>
+                        Name: <input type='text' id='edit-name' required><br> Description: <input type='text' id='edit-description' required><br> Type:
+                        <input type='text' id='edit-type' required><br>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="update-button">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="review-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Location Reviews</h4>
+                </div>
+
+                <div id="review-location"></div>
+
+                <div id="reviews-div">
+
+                </div>
+                <form>
+
+                    Name: <input type='text' id='reviewer-name' placeholder="Your Name" required><br> Rating: <input type="text" id="review-rating" placeholder="Rate this Location (1-5)" required><br>
+                    <textarea class="form-control" rows="3" id="review-content" placeholder="Enter your Reviews Here"></textarea>
+
+                </form>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="add-Review">Add Review</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div>
+        <h1>Hey this is a dive  bottom of the screen below the Modal</h1></div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="js/mapMarkers.js"></script>
     <script src="js/userLocation.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCccCLwK8Z1Z1sI8y3HnsOyy46P1rxPqNk&callback=initMap">
     </script>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    </link>
 </body>
 
 </html>

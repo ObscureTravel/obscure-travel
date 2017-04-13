@@ -33,3 +33,33 @@
 //             
 //             });
 //    }
+
+
+
+
+
+
+// // get the value of the search bar and display map based on that value
+//  if (searchBarValue == "0"){
+//  // show all
+//  $.get("locations/showLocations", function(userLocations){
+
+// displayLocations();
+
+// });
+//  }else if(searchBarValue != "0"){
+//  	locationTypeID = searchBarValue
+// //LocationTypeID is only needed if we want to use longs instead of Strings for searing
+ 
+
+// // functions to call to the db and display results from the user selected map filters.
+
+// $.get("/locations/locationByType/typeID",function(displayFilteredlocations)){ //from db by selected location type ( do we need a locationTypeID)
+// //select * from locations where LocationTpye =Bar"
+// //typeID represents the location of Json data with a singular Location_Type value i.e. 2
+// displayLocations();
+
+// }
+
+
+// }
