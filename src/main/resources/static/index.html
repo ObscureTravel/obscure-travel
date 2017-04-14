@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-blue.min.css" />
     <link rel="stylesheet" href="/css/map.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.css">
+    <script defer src="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.js"></script>
 </head>
 
 
@@ -24,6 +26,23 @@
 
                 <!-- Add spacer, to align navigation to the right -->
                 <div class="mdl-layout-spacer"></div>
+
+                <!-- Drop-down to refine location type -->
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fullwidth">
+                    <input class="mdl-textfield__input" type="text" id="filtermap" readonly tabIndex="-1">
+
+                    <ul for="filtermap" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                        <li class="mdl-menu__item">All</li>
+                        <li class="mdl-menu__item">Eatery</li>
+                        <li class="mdl-menu__item">Bar</li>
+                        <li class="mdl-menu__item">Natural Wonder</li>
+                        <li class="mdl-menu__item">Events</li>
+                        <li class="mdl-menu__item">People Watching</li>
+                        <li class="mdl-menu__item">Resting Places</li>
+                        <li class="mdl-menu__item">Venue</li>
+                    </ul>
+                </div>
+
             </div>
         </header>
 
@@ -35,23 +54,6 @@
                 <a class="mdl-navigation__link" href="">Link</a>
                 <a class="mdl-navigation__link" href="">Link</a>
             </nav>
-        </div>
-
-
-
-        <div>
-            <form action="">
-                <select id="filtermap">
-    <option value="All">All</option>
-    <option value="Eatery">Eatery</option>
-    <option value="Bar">Bar</option>
-    <option value="Natural Wonder">Natural Wonder</option>
-    <option value="Event">Events</option>
-    <option value="People Watching">People Watching</option>
-    <option value="Resting Places">Resting Places</option>
-    <option value="Venue">Venue</option>
-  </select>
-            </form>
         </div>
 
         <!-- div for map display -->
