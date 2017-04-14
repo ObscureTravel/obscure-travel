@@ -3,11 +3,10 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="css/map.css">
     <link href="https://fonts.googleapis.com/css?family=Megrim" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-blue.min.css" />
-    <link rel="stylesheet" href="/css/map.css" />
+    <link rel="stylesheet" href="/css/index.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.css">
     <script defer src="https://cdn.rawgit.com/CreativeIT/getmdl-select/master/getmdl-select.min.js"></script>
@@ -71,14 +70,50 @@
 
                     <div id="edit-form">
                         <form>
-                            Name: <input type='text' id='edit-name' required><br> Description: <input type='text' id='edit-description' required><br> Type:
-                            <input type='text' id='edit-type' required><br>
+                            <table class="edit-form-table">
+                                <tr>
+                                    <td>
+                                        <h4>Name:</h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="mdl-textfield mdl-js-textfield">
+                                            <input class="mdl-textfield__input" type="text" id="edit-name" required>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h4>Type:</h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="mdl-textfield mdl-js-textfield">
+                                            <input class="mdl-textfield__input" type="text" id="edit-type" required>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h4>Description:</h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="mdl-textfield mdl-js-textfield">
+                                            <input class="mdl-textfield__input" type="text" id='edit-description' required>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
                         </form>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="update-button">Update</button>
+                        <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" data-dismiss="modal">Close</button>
+                        <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="update-button">Update</button>
                     </div>
                 </div>
             </div>
@@ -100,14 +135,29 @@
                     </div>
                     <form>
 
+                        <table class="form-table">
+                            <tr>
+                                <td>
+                                    <h4>Name:</h4>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <input class="mdl-textfield__input" type="text" id='reviewer-name' placeholder="Your Name" required>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+
                         Name: <input type='text' id='reviewer-name' placeholder="Your Name" required><br> Rating: <input type="text" id="review-rating" placeholder="Rate this Location (1-5)" required><br>
                         <textarea class="form-control" rows="3" id="review-content" placeholder="Enter your Reviews Here"></textarea>
 
                     </form>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="add-Review">Add Review</button>
+                        <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" data-dismiss="modal">Close</button>
+                        <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="add-Review">Add Review</button>
                     </div>
                 </div>
             </div>

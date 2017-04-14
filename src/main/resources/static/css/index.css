@@ -1,0 +1,36 @@
+.mdl-textfield {
+    margin-left: 20px;
+    padding: 20px 0;
+}
+
+.form-table {
+    margin: 0px auto;
+    margin-top: 10px;
+}
+
+#map {
+    height: 100%;
+}
+
+
+/* Optional: Makes the sample page fill the window. */
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* these styles display the stars on rating attributes */
+
+span.stars, span.stars span {
+    display: block;
+    background: url(../images/stars.png) 0 -16px repeat-x;
+    width: 80px;
+    height: 16px;
+}
+
+span.stars span {
+    background-position: 0 0;
+}
