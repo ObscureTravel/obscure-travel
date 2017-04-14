@@ -8,6 +8,10 @@
     margin-top: 10px;
 }
 
+#reviews-div {
+    margin: 20px;
+}
+
 #map {
     height: 100%;
 }
@@ -33,4 +37,13 @@ span.stars, span.stars span {
 
 span.stars span {
     background-position: 0 0;
+}
+
+#bottomLogo img {
+    max-width: 30%;
+    height: auto;
+    margin-bottom: 10px;
+    margin-left: 30px;
+    float: left;
+    padding-bottom: 20px;
 }

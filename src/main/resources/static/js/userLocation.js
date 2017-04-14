@@ -12,7 +12,7 @@ function initMap() {
         // mapTypeId: google.maps.MapTypeId.HYBRID,
     });
 
-    
+
     var infoWindow = new google.maps.InfoWindow({
         map: map
     });
