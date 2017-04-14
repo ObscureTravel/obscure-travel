@@ -11,6 +11,8 @@ function initMap() {
         //minZoom: 8,
         // mapTypeId: google.maps.MapTypeId.HYBRID,
     });
+
+    
     var infoWindow = new google.maps.InfoWindow({
         map: map
     });
@@ -88,6 +90,7 @@ function initMap() {
                 position: latLng,
                 map: map,
                 title: userLocations[i].name,
+                icon: 'images/blueLocationMarker.png',
                 html: '<div style=" height: 100%;">' +
                     '<h1>' + userLocations[i].name + '</h1>' +
                     '<p>' + userLocations[i].locationType + '</p>' +
@@ -99,6 +102,7 @@ function initMap() {
                     '<button id="edit-button-modal" type="button" data-toggle="modal" data-target="#edit-modal">' + 'Edit' + '</button>' +
                     '<button id="review-button-modal" type="button" data-toggle="modal" data-target="#review-modal">' + 'Reviews' + '</button>' +
                     '</div>'
+
             });
 
 
