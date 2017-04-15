@@ -42,8 +42,9 @@ span.stars span {
 #bottomLogo img {
     max-width: 30%;
     height: auto;
-    margin-bottom: 10px;
-    margin-left: 30px;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
     float: left;
     padding-bottom: 20px;
 }
