@@ -48,3 +48,6 @@ span.stars span {
     float: left;
     padding-bottom: 20px;
 }
+.mdl-mini-footer{
+	padding: 0;
+}
